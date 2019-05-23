@@ -1,0 +1,4 @@
+agda-stdlib/
+src/
+pkg/
+*.pkg.tar.xz
