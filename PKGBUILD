@@ -1,21 +1,14 @@
 pkgname=agda-stdlib-git
-pkgver=1.0.r75.gfe0ab330
+pkgver=*
 pkgrel=1
 pkgdesc="The Agda standard library"
 arch=('x86_64')
 url="https://github.com/agda/agda-stdlib"
 license=('custom')
-groups=()
-depends=('agda')
-makedepends=('git' 'ghc' 'haskell-filemanip')
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-replaces=()
-backup=()
-options=()
-install=()
-source=("${pkgname%-git}::git+https://github.com/agda/agda-stdlib.git")
-noextract=()
+makedepends=('git')
+provides=('agda-stdlib')
+conflicts=('agda-stdlib')
+source=("agda-stdlib::git+https://github.com/agda/agda-stdlib.git")
 md5sums=('SKIP')
 
 pkgver() {
