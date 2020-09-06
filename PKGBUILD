@@ -1,5 +1,5 @@
 pkgname=agda-stdlib-git
-pkgver=*
+pkgver=v1.4.rc1.r0.g1309c7516
 pkgrel=1
 pkgdesc="The Agda standard library"
 arch=('x86_64')
@@ -12,8 +12,8 @@ source=("agda-stdlib::git+https://github.com/agda/agda-stdlib.git")
 md5sums=('SKIP')
 
 pkgver() {
-    cd "$srcdir/${pkgname%-git}"
-    git describe --long --tags | sed 's/^v//;s/-/.r/;s/-/./'
+    (cd "$srcdir/${pkgname%-git}"; git describe --long --tags)\
+        | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
@@ -21,7 +21,9 @@ build() {
 
     for file in `find "src/" -name "*.agda"`
     do
-        if [ ! -f $file"i" ]; then agda $file; fi
+        if [ ! -f $file"i" ]; then
+            agda "$file" --no-project --no-default-libraries
+        fi
     done
 }
 
